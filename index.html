@@ -1,137 +1,320 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Debt Tracker</title>
-  </head>
-  <body>
-    <nav
-      style="
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      ">
-      <h1>Personal Debt Tracker</h1>
-    </nav>
-    <h2>Debts Owed to Me</h2>
-    <table id="debtsOwedToMe">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Amount</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <h2>Debts I Owe</h2>
-    <table id="debtsIOwe">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Amount</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <h2 style="margin-top: 80px">Add Debt</h2>
-    <form id="debtForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" required />
-      <label for="amount">Amount:</label>
-      <input type="number" id="amount" required />
-      <label for="date">Date:</label>
-      <input type="date" id="date" required />
-      <label for="debtType">Who owes the debt?</label>
-      <select id="debtType" required>
-        <option value="owedToMe">They owe me</option>
-        <option value="iOwe">I owe them</option>
-      </select>
-      <button type="submit">Add Debt</button>
-    </form>
-    <script>
-      const debtsOwedToMeTable = document
-        .getElementById("debtsOwedToMe")
-        .getElementsByTagName("tbody")[0];
-      const debtsIOweTable = document
-        .getElementById("debtsIOwe")
-        .getElementsByTagName("tbody")[0];
-      const debtForm = document.getElementById("debtForm");
-
-      debtForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        const name = document.getElementById("name").value;
-        const amount = document.getElementById("amount").value;
-        const date = document.getElementById("date").value;
-        const debtType = document.getElementById("debtType").value;
-
-        if (debtType === "owedToMe") {
-          // Add to debts owed to me
-          const newRow = debtsOwedToMeTable.insertRow();
-          newRow.insertCell(0).innerText = name;
-          newRow.insertCell(1).innerText = amount;
-          newRow.insertCell(2).innerText = date;
-        } else if (debtType === "iOwe") {
-          // Add to debts I owe
-          const newRow = debtsIOweTable.insertRow();
-          newRow.insertCell(0).innerText = name;
-          newRow.insertCell(1).innerText = amount;
-          newRow.insertCell(2).innerText = date;
-        }
-
-        // Clear the form
-        debtForm.reset();
-      });
-    </script>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-      }
-      h1,
-      h2 {
-        color: #333;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-      }
-      th,
-      td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-      }
-      th {
-        background-color: #f4f4f4;
-      }
-      form {
-        margin-top: 20px;
-      }
-      label {
-        display: block;
-        margin-bottom: 5px;
-      }
-      input[type="text"],
-      input[type="number"],
-      input[type="date"] {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-      }
-      button {
-        padding: 10px 15px;
-        background-color: #28a745;
-        color: white;
-        border: none;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #218838;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1, h2 {
+            color: #333;
+        }
+        
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 48%;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            color: #555;
+        }
+        
+        .amount {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .owe-me {
+            color: #2ecc71;
+        }
+        
+        .i-owe {
+            color: #e74c3c;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .delete-btn {
+            background-color: #e74c3c;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
     </style>
-  </body>
+</head>
+<body>
+    <h1>Personal Debt Tracker</h1>
+    
+    <div class="dashboard">
+        <div class="card">
+            <h3>Total Owed to Me</h3>
+            <div class="amount owe-me" id="total-owed-to-me">$0.00</div>
+            <p>From <span id="debt-count-owed-to-me">0</span> people</p>
+        </div>
+        
+        <div class="card">
+            <h3>Total I Owe</h3>
+            <div class="amount i-owe" id="total-i-owe">$0.00</div>
+            <p>To <span id="debt-count-i-owe">0</span> people</p>
+        </div>
+    </div>
+    
+    <h2>Debts Owed to Me</h2>
+    <table id="owed-to-me-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be added dynamically -->
+        </tbody>
+    </table>
+    
+    <h2>Debts I Owe</h2>
+    <table id="i-owe-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be added dynamically -->
+        </tbody>
+    </table>
+    
+    <h2>Add New Debt</h2>
+    <div class="form-container">
+        <form id="debt-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" step="0.01" min="0" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select id="type" required>
+                    <option value="">Select...</option>
+                    <option value="owed-to-me">They owe me</option>
+                    <option value="i-owe">I owe them</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" required>
+            </div>
+            
+            <button type="submit">Add Debt</button>
+        </form>
+    </div>
+    
+    <script>
+        // Store debts in memory (array)
+        let debts = [];
+        
+        // DOM elements
+        const debtForm = document.getElementById('debt-form');
+        const owedToMeTable = document.getElementById('owed-to-me-table').querySelector('tbody');
+        const iOweTable = document.getElementById('i-owe-table').querySelector('tbody');
+        const totalOwedToMe = document.getElementById('total-owed-to-me');
+        const totalIOwe = document.getElementById('total-i-owe');
+        const debtCountOwedToMe = document.getElementById('debt-count-owed-to-me');
+        const debtCountIOwe = document.getElementById('debt-count-i-owe');
+        
+        // Initialize the app
+        function init() {
+            // Set today's date as default
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').value = today;
+            
+            // You could add some sample data here for testing
+            // addDebt("John", 50, "owed-to-me", today);
+            // addDebt("Sarah", 25, "i-owe", today);
+        }
+        
+        // Render all debts in the tables
+        function renderDebts() {
+            // Clear tables
+            owedToMeTable.innerHTML = '';
+            iOweTable.innerHTML = '';
+            
+            // Add each debt to the appropriate table
+            debts.forEach((debt, index) => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${debt.name}</td>
+                    <td>$${debt.amount.toFixed(2)}</td>
+                    <td>${debt.date}</td>
+                    <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+                `;
+                
+                if (debt.type === 'owed-to-me') {
+                    owedToMeTable.appendChild(row);
+                } else {
+                    iOweTable.appendChild(row);
+                }
+            });
+            
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    deleteDebt(index);
+                });
+            });
+        }
+        
+        // Update the total amounts
+        function updateTotals() {
+            const owedToMe = debts
+                .filter(debt => debt.type === 'owed-to-me')
+                .reduce((sum, debt) => sum + debt.amount, 0);
+            
+            const iOwe = debts
+                .filter(debt => debt.type === 'i-owe')
+                .reduce((sum, debt) => sum + debt.amount, 0);
+            
+            totalOwedToMe.textContent = `$${owedToMe.toFixed(2)}`;
+            totalIOwe.textContent = `$${iOwe.toFixed(2)}`;
+            
+            // Update counts
+            debtCountOwedToMe.textContent = debts.filter(d => d.type === 'owed-to-me').length;
+            debtCountIOwe.textContent = debts.filter(d => d.type === 'i-owe').length;
+        }
+        
+        // Add a new debt
+        function addDebt(name, amount, type, date) {
+            const newDebt = {
+                name,
+                amount: parseFloat(amount),
+                type,
+                date
+            };
+            
+            debts.push(newDebt);
+            renderDebts();
+            updateTotals();
+        }
+        
+        // Delete a debt
+        function deleteDebt(index) {
+            debts.splice(index, 1);
+            renderDebts();
+            updateTotals();
+        }
+        
+        // Form submission
+        debtForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const amount = document.getElementById('amount').value;
+            const type = document.getElementById('type').value;
+            const date = document.getElementById('date').value;
+            
+            addDebt(name, amount, type, date);
+            
+            // Reset form
+            debtForm.reset();
+            document.getElementById('date').value = new Date().toISOString().split('T')[0];
+        });
+        
+        // Initialize the app
+        init();
+    </script>
+</body>
 </html>
