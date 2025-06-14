@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debt Tracker Documentation</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .docs-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .tag-section {
+        margin-bottom: 30px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+      }
+
+      .tag-name {
+        background-color: #f0f0f0;
+        padding: 3px 6px;
+        border-radius: 3px;
+        font-family: monospace;
+        color: #d6336c;
+      }
+
+      .tag-description {
+        margin: 10px 0;
+        line-height: 1.6;
+      }
+
+      .tag-attributes {
+        margin-top: 10px;
+        padding-left: 20px;
+      }
+
+      .tag-attributes li {
+        margin-bottom: 8px;
+      }
+
+      .attribute-name {
+        font-family: monospace;
+        color: #1c7ed6;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #1c7ed6;
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="docs-container">
+      <a href="index.html" class="back-link">← Back to Debt Tracker</a>
+      <h1>HTML Tags Documentation</h1>
+      <p>
+        This page explains all the HTML tags used in the Personal Debt Tracker
+        application.
+      </p>
+
+      <div class="tag-section">
+        <h2><span class="tag-name">&lt;!DOCTYPE html&gt;</span></h2>
+        <div class="tag-description">
+          Defines the document type and HTML version (HTML5 in this case).
+        </div>
+      </div>
+
+      <div class="tag-section">
+        <h2><span class="tag-name">&lt;html&gt;</span></h2>
+        <div class="tag-description">
+          The root element of an HTML page. The
+          <span class="tag-name">lang="en"</span> attribute specifies that the
+          document is in English.
+        </div>
+      </div>
+
+      <div class="tag-section">
+        <h2><span class="tag-name">&lt;head&gt;</span></h2>
+        <div class="tag-description">
+          Contains meta-information about the document, including:
+          <ul class="tag-attributes">
+            <li>
+              <span class="attribute-name">&lt;meta charset="UTF-8"&gt;</span> -
+              Specifies character encoding
+            </li>
+            <li>
+              <span class="attribute-name">&lt;meta name="viewport"&gt;</span> -
+              Controls mobile responsiveness
+            </li>
+            <li>
+              <span class="attribute-name">&lt;title&gt;</span> - Sets the
+              browser tab title
+            </li>
+            <li>
+              <span class="attribute-name">&lt;link rel="stylesheet"&gt;</span>
+              - Links to external CSS files
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tag-section">
+        <h2><span class="tag-name">&lt;body&gt;</span></h2>
+        <div class="tag-description">
+          Contains all the visible content of the web page.
+        </div>
+      </div>
+
+      <div class="tag-section">
+        <h2><span class="tag-name">&lt;div&gt;</span></h2>
+        <div class="tag-description">
+          A container element used to group other elements for styling and
+          organization. Key divs in the app:
+          <ul class="tag-attributes">
+            <li>
+              <span class="attribute-name">header</span> - Contains the logo and
+              title
+            </li>
+            <li>
+              <span class="attribute-name">dashboard</span> - Holds the summary
+              cards
+            </li>
+            <li>
+              <span class="attribute-name">card</span> - Individual summary
+              cards
+            </li>
+            <li>
+              <span class="attribute-name">form-container</span> - Wraps the
+              debt entry form
+            </li>
+            <li>
+              <span class="attribute-name">form-group</span> - Groups form
+              labels and inputs
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tag-section">
+        <h2><span class="tag-name">&lt;img&gt;</span></h2>
+        <div class="tag-description">
+          Displays an image. Attributes:
+          <ul class="tag-attributes">
+            <li>
+              <span class="attribute-name">src</span> - Path to the image file
+            </li>
+            <li>
+              <span class="attribute-name">alt</span> - Alternative text for
+              accessibility
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tag-section">
+        <h2>
+          <span class="tag-name">&lt;h1&gt;</span>,
+          <span class="tag-name">&lt;h2&gt;</span>,
+          <span class="tag-name">&lt;h3&gt;</span>
+        </h2>
+        <div class="tag-description">
+          Heading elements of different levels (h1 is most important). Used for:
+          <ul class="tag-attributes">
+            <li>Page title (h1)</li>
+            <li>Section headings like "Debts Owed to Me" (h2)</li>
+            <li>Card titles like "Total Owed to Me" (h3)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tag-section">
+        <h2><span class="tag-name">&lt;table&gt;</span></h2>
+        <div class="tag-description">
+          Creates a data table with rows and columns. Contains:
+          <ul class="tag-attributes">
+            <li>
+              <span class="attribute-name">&lt;thead&gt;</span> - Table header
+              with column labels
+            </li>
+            <li>
+              <span class="attribute-name">&lt;tbody&gt;</span> - Table body
+              where debt data is dynamically inserted
+            </li>
+            <li><span class="attribute-name">&lt;tr&gt;</span> - Table row</li>
+            <li>
+              <span class="attribute-name">&lt;th&gt;</span> - Table header cell
+            </li>
+            <li>
+              <span class="attribute-name">&lt;td&gt;</span> - Table data cell
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tag-section">
+        <h2><span class="tag-name">&lt;form&gt;</span></h2>
+        <div class="tag-description">
+          Container for user input elements. Attributes:
+          <ul class="tag-attributes">
+            <li>
+              <span class="attribute-name">id="debt-form"</span> - Unique
+              identifier for JavaScript
+            </li>
+          </ul>
+          Contains various form controls:
+          <ul class="tag-attributes">
+            <li>
+              <span class="attribute-name">&lt;input&gt;</span> - For text,
+              number, and date entry
+            </li>
+            <li>
+              <span class="attribute-name">&lt;select&gt;</span> - Dropdown for
+              debt type selection
+            </li>
+            <li>
+              <span class="attribute-name">&lt;button&gt;</span> - Form
+              submission and reset buttons
+            </li>
+            <li>
+              <span class="attribute-name">&lt;label&gt;</span> - Descriptions
+              for form fields
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tag-section">
+        <h2><span class="tag-name">&lt;script&gt;</span></h2>
+        <div class="tag-description">
+          Links to external JavaScript file that provides all the interactive
+          functionality:
+          <ul class="tag-attributes">
+            <li>Adding and deleting debts</li>
+            <li>Calculating totals</li>
+            <li>Updating the display</li>
+            <li>Form handling</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
