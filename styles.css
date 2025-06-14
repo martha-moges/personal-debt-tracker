@@ -147,3 +147,18 @@ button:hover {
 .btn-clr:hover {
   background-color: #e74c3c;
 }
+
+.docs-link {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  background-color: #3498db;
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.docs-link:hover {
+  background-color: #2980b9;
+}
